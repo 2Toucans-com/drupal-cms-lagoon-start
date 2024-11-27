@@ -4,7 +4,7 @@ x-volumes:
     volumes:
       - files:/app/web/sites/default/files
       - composer-cache:/home/.composer/cache
-      - .:/app:delegated
+      # - .:/app:delegated # currently running purely from docker image
 
 x-environment:
   &default-environment
@@ -47,8 +47,7 @@ services:
       lagoon.volumes.files.path: /app/web/sites/default/
       lagoon.volumes.composer-cache.path: /home/.composer/cache/
       lando.type: php-cli-drupal
-    << : [*default-volumes] # loads the defined volumes from the top
-    user: root
+    << : [*default-volumes, *default-user]
     environment:
       << : *default-environment # loads the defined environment variables from the top
 

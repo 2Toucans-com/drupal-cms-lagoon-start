@@ -29,7 +29,9 @@ tasks:
         shell: sh
     - run:
         name: composer re-disable scaffold
-        command: composer config extra.drupal-scaffold --unset
+        command: |
+            composer config extra.drupal-scaffold --unset
+            composer update --no-dev --lock
         service: nginx
         container: php
         shell: sh
