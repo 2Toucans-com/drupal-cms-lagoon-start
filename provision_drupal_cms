@@ -1,0 +1,35 @@
+#!/usr/local/bin/php
+<?php
+
+chdir("/app");
+
+if(!file_exists("./composer.json") && !file_exists("./composer.lock")) { // we do the setup
+    // get the files
+    $output = [];
+    $retVal = 0;
+    logLine("Pulling source");
+    exec("git clone --depth=1 https://git.drupalcode.org/project/drupal_cms.git ./ && rm -rf ./.git", $output, $retVal);
+    if($retVal != 0) {
+        logFatal("Unable to pull source");
+    }
+
+    logLine("Generating composer.json");
+    exec("./.ddev/homeadditions/bin/generate-composer-json > composer.json", $output, $retVal);
+
+
+} else {
+    logLine("Drupal-CMS is installed, skipping");
+}
+
+
+function logFatal($outputString) {
+    logLine("Fatal error, will exit : " . $outputString);
+    exit(1);
+}
+
+function logLine($outputString) {
+    $linebreak = "**************************************************************************************************";
+    printf("{$linebreak}\n");
+    printf("%s\n", $outputString);
+    printf("{$linebreak}\n\n");
+}

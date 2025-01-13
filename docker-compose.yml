@@ -2,13 +2,12 @@ x-volumes:
   &default-volumes
     # Define all volumes you would like to have real-time mounted into the docker containers
     volumes:
-      - files:/app/web/sites/default/files
-      - composer-cache:/home/.composer/cache
-      # - .:/app:delegated # currently running purely from docker image
+      - app:/app
+
 
 x-environment:
   &default-environment
-    LAGOON_ROUTE: &default-url http://${COMPOSE_PROJECT_NAME:-drupal-cms-example}.localhost
+    LAGOON_ROUTE: &default-url http://${COMPOSE_PROJECT_NAME:-drupal-cms-example}.docker.amazee.io
     # Change to "production" to have the system behave like in production
     # LAGOON_ENVIRONMENT_TYPE: development
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
@@ -59,7 +58,7 @@ services:
     labels:
       lagoon.type: nginx-php-persistent
       lagoon.volumes.app.path: /app/
-      lagoon.volumes.files.path: /app/web/sites/default/
+      # lagoon.volumes.files.path: /app/web/sites/default/
       lando.type: nginx-drupal
     ports:
       - "8080" # exposes the port 8080 with a random local port, find it with `docker compose port nginx 8080`
@@ -70,6 +69,7 @@ services:
       << : *default-environment # loads the defined environment variables from the top
       LAGOON_LOCALDEV_URL: *default-url
     networks:
+      - amazeeio-network
       - default
 
   php:
@@ -102,3 +102,7 @@ services:
       << : *default-environment
     volumes:
       - db:/var/lib/mysql
+
+networks:
+  amazeeio-network:
+    external: true
