@@ -9,39 +9,39 @@ tasks:
 #         command: mkdir -p /app/web/sites/default/files/private/ && drush sql-dump --ordered-dump --gzip --result-file=/app/web/sites/default/files/private/pre-deploy-dump.sql.gz || true
 #         service: cli
 
-  post-rollout:
+#   post-rollout:
     # Enable once config sync has been setup.
     # - run:
     #     name: drush cim
     #     command: drush -y cim
     #     service: cli
-    - run:
-        name: composer install
-        command: |
-            git clone https://github.com/lagoon-examples/drupal-cms-example
-        service: cli
-        shell: bash
-    - run:
-        name: composer update
-        command: composer update
-        service: nginx
-        container: php
-        shell: sh
-    - run:
-        name: composer re-disable scaffold
-        command: |
-            composer config extra.drupal-scaffold --unset
-            composer update --no-dev --lock
-        service: nginx
-        container: php
-        shell: sh
-    - run:
-        name: composer check
-        command: |
-          /usr/local/bin/composer validate --check-lock --no-check-publish --with-dependencies --no-ansi --working-dir=/app
-        service: nginx
-        container: php
-        shell: sh
+    # - run:
+    #     name: composer install
+    #     command: |
+    #         git clone https://github.com/lagoon-examples/drupal-cms-example
+    #     service: cli
+    #     shell: bash
+    # - run:
+    #     name: composer update
+    #     command: composer update
+    #     service: nginx
+    #     container: php
+    #     shell: sh
+    # - run:
+    #     name: composer re-disable scaffold
+    #     command: |
+    #         composer config extra.drupal-scaffold --unset
+    #         composer update --no-dev --lock
+    #     service: nginx
+    #     container: php
+    #     shell: sh
+    # - run:
+    #     name: composer check
+    #     command: |
+    #       /usr/local/bin/composer validate --check-lock --no-check-publish --with-dependencies --no-ansi --working-dir=/app
+    #     service: nginx
+    #     container: php
+    #     shell: sh
     # - run:
     #     name: set directory permissions
     #     command: |
@@ -50,11 +50,11 @@ tasks:
     #     service: nginx
     #     container: php
     #     shell: sh
-    - run:
-        name: drush updb
-        command: drush -y updb
-        service: cli
-    - run:
-        name: drush cr
-        command: drush -y cr
-        service: cli
+    # - run:
+    #     name: drush updb
+    #     command: drush -y updb
+    #     service: cli
+    # - run:
+    #     name: drush cr
+    #     command: drush -y cr
+    #     service: cli
