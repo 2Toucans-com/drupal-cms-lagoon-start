@@ -4,7 +4,7 @@ RUN mkdir -p -v -m775 /app && fix-permissions /app
 
 COPY ./.lagoon/fixapp_entrypoint.sh /lagoon/entrypoints/99_fixapp.sh
 
-COPY ./testinstall/provision_drupal_cms /usr/local/bin/
+COPY ./provision_drupal_cms /usr/local/bin/
 
 RUN mkdir -p -v -m775 /home/.composer/cache \
     && fix-permissions /home/.composer/cache
