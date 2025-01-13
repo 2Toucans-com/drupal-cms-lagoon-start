@@ -41,7 +41,7 @@ services:
       dockerfile: .lagoon/Dockerfile
     labels:
       # Lagoon Labels
-      lagoon.type: cli-persistent
+      lagoon.type: cli
       lagoon.volumes.app.path: /app/
       lagoon.volumes.files.path: /app/web/sites/default/
       lagoon.volumes.composer-cache.path: /home/.composer/cache/
@@ -56,7 +56,7 @@ services:
       target: nginx
       dockerfile: .lagoon/Dockerfile
     labels:
-      lagoon.type: nginx-php-persistent
+      lagoon.type: nginx-php
       lagoon.volumes.app.path: /app/
       # lagoon.volumes.files.path: /app/web/sites/default/
       lando.type: nginx-drupal
@@ -78,7 +78,7 @@ services:
       target: php
       dockerfile: .lagoon/Dockerfile
     labels:
-      lagoon.type: nginx-php-persistent
+      lagoon.type: nginx-php
       lagoon.name: nginx # we want this service be part of the nginx pod in Lagoon
       lagoon.volumes.app.path: /app/
       lagoon.volumes.files.path: /app/web/sites/default/
