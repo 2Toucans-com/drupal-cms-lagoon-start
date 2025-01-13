@@ -43,7 +43,7 @@ services:
       # Lagoon Labels
       lagoon.type: cli
       lagoon.volumes.app.path: /app/
-      lagoon.volumes.files.path: /app/web/sites/default/
+      # lagoon.volumes.files.path: /app/web/sites/default/
       lagoon.volumes.composer-cache.path: /home/.composer/cache/
       lando.type: php-cli-drupal
     << : [*default-volumes, *default-user]
@@ -81,7 +81,7 @@ services:
       lagoon.type: nginx-php
       lagoon.name: nginx # we want this service be part of the nginx pod in Lagoon
       lagoon.volumes.app.path: /app/
-      lagoon.volumes.files.path: /app/web/sites/default/
+      # lagoon.volumes.files.path: /app/web/sites/default/
       lagoon.volumes.composer-cache.path: /home/.composer/cache/
       lando.type: php-fpm
     << : [*default-volumes, *default-user]
