@@ -6,7 +6,7 @@ It uses the [Drupal CMS](https://www.drupal.org/project/drupal_cms) default down
 
 As of August 2024 it doesn't support local development, Project Browser or Automated Updates.
 
-To get started:
+To get started: 
 ```
 docker compose build
 docker compose up -d
