@@ -13,6 +13,11 @@ COPY .lagoon/scripts/scaffold.sh /lagoon/entrypoints/999-drupal-cms-scaffold.sh
 # Define where the Drupal Root is located
 ENV WEBROOT=web
 
+# now we run the scaffolding in here too, this ensures that on Lagoon itself we have the various files etc.
+# in the container itself
+
+RUN /lagoon/entrypoints/999-drupal-cms-scaffold.sh
+
 FROM uselagoon/nginx-drupal:latest AS nginx
 
 COPY --from=cli /app /app
