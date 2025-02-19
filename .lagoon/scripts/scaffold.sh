@@ -7,9 +7,12 @@ cd /app
 # Check if the flag file exists
 if [ ! -f "$FLAG_FILE" ]; then
     git config --global --add safe.directory /app
-    composer install --no-dev
-    cp -r /app/vendor/drupal/cms/web/profiles/drupal_cms_installer /app/web/profiles/
-    cp /app/drush/Commands/contrib/drupal_integrations/assets/* /app/web/sites/default
+    if [ -z "$LAGOON_KUBERNETES" ]; then
+        echo "Not running in Lagoon - we will try install"
+        composer install --no-dev
+        cp -r /app/vendor/drupal/cms/web/profiles/drupal_cms_installer /app/web/profiles/
+        cp /app/drush/Commands/contrib/drupal_integrations/assets/* /app/web/sites/default
+    fi
     cp /app/.lagoon/assets/* /app/web/sites/default
     mv /app/web/sites/default/initial.settings.php /app/web/sites/default/settings.php
     
