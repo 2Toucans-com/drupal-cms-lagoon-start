@@ -4,7 +4,7 @@ COPY composer.* /app/
 COPY assets /app/assets
 RUN composer install --no-dev \
     && cp -r /app/vendor/drupal/cms/web/profiles/drupal_cms_installer /app/web/profiles/
-RUN mkdir -p -v -m775 /app/web/sites/default/files
+RUN mkdir -p -v -m775 /app/web/sites/default/
 
 # set up scaffolding for drupal-cms
 
@@ -12,11 +12,6 @@ COPY .lagoon/scripts/scaffold.sh /lagoon/entrypoints/999-drupal-cms-scaffold.sh
 
 # Define where the Drupal Root is located
 ENV WEBROOT=web
-
-# now we run the scaffolding in here too, this ensures that on Lagoon itself we have the various files etc.
-# in the container itself
-
-RUN /lagoon/entrypoints/999-drupal-cms-scaffold.sh
 
 FROM uselagoon/nginx-drupal:latest AS nginx
 
