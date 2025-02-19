@@ -6,6 +6,7 @@ cd /app
 
 # Check if the flag file exists
 if [ ! -f "$FLAG_FILE" ]; then
+    echo "*** NO SCAFFOLD FILE FOUND ***"
     git config --global --add safe.directory /app
     if [ -z "$LAGOON_KUBERNETES" ]; then
         echo "Not running in Lagoon - we will try install"
@@ -17,8 +18,10 @@ if [ ! -f "$FLAG_FILE" ]; then
     mv /app/web/sites/default/initial.settings.php /app/web/sites/default/settings.php
     
     # Create the flag file to indicate the script has run
+    echo "About to create $FLAG_FILE"
     touch "$FLAG_FILE"
 else
+    echo "*** SCAFFOLD FILE FOUND ***"
     echo "The initialization script has already run."
 fi
 
