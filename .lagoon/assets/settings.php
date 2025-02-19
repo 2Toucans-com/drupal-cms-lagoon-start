@@ -45,17 +45,3 @@ if (file_exists(__DIR__ . '/settings.local.php')) {
 if (file_exists(__DIR__ . '/services.local.yml')) {
   $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
 }
-$databases['default']['default'] = array (
-  'database' => 'drupal',
-  'username' => 'drupal',
-  'password' => 'drupal',
-  'prefix' => '',
-  'host' => 'mariadb',
-  'port' => 3306,
-  'isolation_level' => 'READ COMMITTED',
-  'driver' => 'mysql',
-  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
-  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
-);
-$settings['hash_salt'] = 'K4-CJAJxpBuPy9kUU_soi1wyoXmsAKv1MmJELIrCrLe18vS2NsNV_JWm7sPBFEaMZkaDoVFhMA';
-$settings['config_sync_directory'] = 'sites/default/files/config_tBIFak_MAgupEGCOCduDpFmCE-cNaFIJN3XZuQj1RAX-F-TotuXvhhDv18YyWySehyoKLE0vxg/sync';
