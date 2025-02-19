@@ -2,6 +2,7 @@ FROM uselagoon/php-8.4-cli-drupal:latest AS cli
 
 COPY composer.* /app/
 COPY assets /app/assets
+COPY .lagoon /app/.lagoon
 RUN composer install --no-dev \
     && cp -r /app/vendor/drupal/cms/web/profiles/drupal_cms_installer /app/web/profiles/
 RUN mkdir -p -v -m775 /app/web/sites/default/

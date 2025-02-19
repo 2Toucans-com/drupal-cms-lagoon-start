@@ -13,10 +13,7 @@ if [ ! -f "$FLAG_FILE" ]; then
         composer install --no-dev
         cp -r /app/vendor/drupal/cms/web/profiles/drupal_cms_installer /app/web/profiles/
         cp /app/drush/Commands/contrib/drupal_integrations/assets/* /app/web/sites/default
-    fi
-    cp /app/.lagoon/assets/* /app/web/sites/default
-    mv /app/web/sites/default/initial.settings.php /app/web/sites/default/settings.php
-    
+    fi    
     # Create the flag file to indicate the script has run
     echo "About to create $FLAG_FILE"
     touch "$FLAG_FILE"
@@ -25,4 +22,9 @@ else
     echo "The initialization script has already run."
 fi
 
+# here we attempt to copy the details
+if [ ! -f "/app/web/sites/default/settings.php" ]; then
+    cp /app/.lagoon/assets/* /app/web/sites/default
+    mv /app/web/sites/default/initial.settings.php /app/web/sites/default/settings.php
+fi
 # if ! [[ $(drush status --field=Database) == "Connected" ]]; then drush si -y; fi
