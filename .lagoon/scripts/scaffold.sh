@@ -27,6 +27,3 @@ if [ ! -f "/app/web/sites/default/settings.php" ]; then
     cp /app/.lagoon/assets/* /app/web/sites/default
     mv /app/web/sites/default/initial.settings.php /app/web/sites/default/settings.php
 fi
-if ! [[ $(drush status --field=Database) == "Connected" ]]; then 
-    drush si -y; 
-fi
