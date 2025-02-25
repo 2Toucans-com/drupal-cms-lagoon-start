@@ -2,19 +2,13 @@
 
 ## Overview
 
-This is an example project demonstrating how to set up a Drupal CMS based environment on Lagoon. The `scaffold.sh` script plays a key role in setting up the project, ensuring necessary dependencies and configurations are applied when running locally versus within Lagoon.
+This is an example project demonstrating how to set up a Drupal CMS based environment on Lagoon.
+
+When running on a Lagoon instance, the first time that the project starts up, it will attempt to install Drupal-CMS - see the `.lagoon.yml` file for how this is achieved using a post rollout task.
+
+The `./.lagoon/scripts/scaffold.sh` script plays a key role in setting up the project, ensuring necessary dependencies and configurations are applied when running locally versus within Lagoon. See the file and the Dockerfile to see how this is achieved.
 
 ## Local Development
-
-### Using the Project Browser (Only Usable When Running Locally)
-
-The Project Browser can be used to install modules through the UI when running locally. To do so:
-
-1. Visit `/admin/modules/browse/drupalorg_jsonapi`.
-2. Install a module using the UI.
-3. This will update the `composer.json` and `composer.lock` files.
-4. Commit these changes to the repository and push them up.
-5. The module will still need to be enabled on the live site, but the composer packages will have been updated correctly.
 
 ### How to Run Locally
 
@@ -33,6 +27,18 @@ These commands will:
 2. Start the containers in detached mode.
 3. Wait for the MariaDB service to become available.
 4. Install Drupal and rebuild the cache using Drush.
+
+### Using the Project Browser to install modules (Only Usable When Running Locally)
+
+The Project Browser can be used to install modules through the UI when running locally. To do so:
+
+1. Visit `/admin/modules/browse/drupalorg_jsonapi`.
+2. Install a module using the UI.
+3. This will update the `composer.json` and `composer.lock` files.
+4. Commit these changes to the repository and push them up.
+5. The module will still need to be enabled on the live site, but the composer packages will have been updated correctly.
+
+
 
 ## Technical Details
 
