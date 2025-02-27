@@ -8,10 +8,6 @@ cd /app
 if [ ! -f "$FLAG_FILE" ]; then
     echo "*** NO SCAFFOLD FILE FOUND ***"
     git config --global --add safe.directory /app
-
-    # We run composer install again here, knowing full well that it mightn't need to run
-    # Worst case this slightly slows down the build, but it won't be by much.
-
     composer install --no-dev
     cp -r /app/vendor/drupal/cms/web/profiles/drupal_cms_installer /app/web/profiles/
     # Create the flag file to indicate the script has run
