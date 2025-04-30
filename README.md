@@ -25,7 +25,6 @@ docker compose exec cli bash -c 'drush -y si && drush -y cr && drush uli'
 (ignore the warnings referring to block plugins not being found. 
 This is a known issue which will be fixed with this https://www.drupal.org/project/drupal/issues/3478773#comment-16090318)
 
-
 These commands will:
 
 1. Start Pygmy.
@@ -43,7 +42,6 @@ The Project Browser can be used to install modules through the UI when running l
 3. This will update the `composer.json` and `composer.lock` files.
 4. Commit these changes to the repository and push them up.
 5. The module will still need to be enabled on the live site, but the composer packages will have been updated correctly.
-
 
 
 ## Technical Details
@@ -67,3 +65,9 @@ The `scaffold.sh` script is responsible for initializing the Drupal project in b
 
 To ensure a smooth setup in cloud environments, auto-installation of the Project Browser has been disabled when running in Lagoon. This prevents conflicts and ensures proper configuration management.
 
+## Customise project
+
+If your exploration went successfully, and you're ready to customise this project, you'll want to amend these files before building your containers:
+
+.env `COMPOSE_PROJECT_NAME=drupal-cms-example`
+.lagoon.yml `project: drupal-cms-example`
